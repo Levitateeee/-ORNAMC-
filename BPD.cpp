@@ -17,7 +17,7 @@ void BPD(Mat& img, vector<Mat> &A) {
 			
 			int num = img.at<uchar>(i, j);
 			vector<int> a;
-			OctToBin(num, a);
+			DecToBin(num, a);
 			int count = 7;
 
 			for (int n = a.size() - 1; count >= 0;n--) {
