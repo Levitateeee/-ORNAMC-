@@ -11,7 +11,7 @@
 using namespace cv;
 using namespace std;
 
-struct doubleCoordinate//¼ÇÂ¼×óÉÏ½Ç£¬ÓÒÏÂ½Ç×ø±ê
+struct doubleCoordinate//è®°å½•å·¦ä¸Šè§’ï¼Œå³ä¸‹è§’åæ ‡
 {
 	int x1;
 	int y1;
@@ -19,21 +19,21 @@ struct doubleCoordinate//¼ÇÂ¼×óÉÏ½Ç£¬ÓÒÏÂ½Ç×ø±ê
 	int y2;
 };
 
-//ÅĞ¶Ï¾ØĞÎÊÇ·ñÎªÍ¬Àà¿é
+//åˆ¤æ–­çŸ©å½¢æ˜¯å¦ä¸ºåŒç±»å—
 bool JudgeSameBlock(Mat& img, int x1, int y1, int x2, int y2);
-//·Ö¸îÔ­Í¼£¬½¨Á¢R¾ØÕó£¬»ñÈ¡×ÓÄ£Ê½¹Ø¼ü×ø±ê¶Ô¹¹³ÉµÄÏòÁ¿£¬»ñÈ¡ÖØµş¿é¹Ø¼ü×ø±ê¶Ô¹¹³ÉµÄÏòÁ¿
+//åˆ†å‰²åŸå›¾ï¼Œå»ºç«‹RçŸ©é˜µï¼Œè·å–å­æ¨¡å¼å…³é”®åæ ‡å¯¹æ„æˆçš„å‘é‡ï¼Œè·å–é‡å å—å…³é”®åæ ‡å¯¹æ„æˆçš„å‘é‡
 void BuildMatrixR(Mat& RH, Mat& RV, Mat& RA, Mat& img, vector<doubleCoordinate>& C, vector<doubleCoordinate>& D);
-//ÇóÃİ
+//æ±‚å¹‚
 double Power(double p, int k);
-//¾Ø¼ÆËã--ÒÀ¾İ¿é×ø±ê
+//çŸ©è®¡ç®—--ä¾æ®å—åæ ‡
 double CalculationM(vector<doubleCoordinate>C, vector<doubleCoordinate>D, int p, int q);
-//¾Ø¼ÆËã-¹âÕ¤É¨Ãè
+//çŸ©è®¡ç®—-å…‰æ …æ‰«æ
 double Calculation(Mat img, int p, int q);
-//Ãæ»ı¼ÆËã-¿é×ø±ê
+//é¢ç§¯è®¡ç®—-å—åæ ‡
 int AreaCalculationM(vector<doubleCoordinate>C, vector<doubleCoordinate>D);
-//Ãæ»ı¼ÆËã-¹âÕ¤É¨Ãè
+//é¢ç§¯è®¡ç®—-å…‰æ …æ‰«æ
 int AreaCalculation(Mat& img);
-//Ê®½øÖÆ×ª¶ş½øÖÆ
-void OctToBin(int num, vector<int> &vec);
-//BPDÎ»Æ½Ãæ·Ö½â
+//åè¿›åˆ¶è½¬äºŒè¿›åˆ¶
+void DecToBin(int num, vector<int> &vec);
+//BPDä½å¹³é¢åˆ†è§£
 void BPD(Mat& img, vector<Mat> &A);
