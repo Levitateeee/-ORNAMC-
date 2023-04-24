@@ -1,7 +1,7 @@
 #include "FUNCTIONS.h"
 #include "stdafx.h"
 
-void OctToBin(int num, vector<int> &vec) {
+void DecToBin(int num, vector<int> &vec) {
 	if (num == 0)   vec.push_back(0);
 	else {
 		int n = num;
@@ -12,6 +12,6 @@ void OctToBin(int num, vector<int> &vec) {
 			n = n / 2;
 		}
 	}
-	//²»×ã8Î»µÄ×ó²¹0
+	//Â²Â»Ã—Ã£8ÃŽÂ»ÂµÃ„Ã—Ã³Â²Â¹0
 	while (vec.size() < 8)   vec.push_back(0);
 }
