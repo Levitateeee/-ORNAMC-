@@ -7,7 +7,7 @@ double Calculation(Mat img, int p, int q) {
 	double cal = 0;
 	for (int i = 0; i < M; i++) {
 		for (int j = 0; j < N; j++) {
-			if (img.at<uchar>(i, j) != 0) {
+			if (img.at<uchar>(i, j) == 0) {
 				
 				double a = j + 0.5;
 				double b = j - 0.5;

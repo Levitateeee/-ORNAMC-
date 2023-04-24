@@ -29,3 +29,11 @@ double Power(double p, int k);
 double CalculationM(vector<doubleCoordinate>C, vector<doubleCoordinate>D, int p, int q);
 //矩计算-光栅扫描
 double Calculation(Mat img, int p, int q);
+//面积计算-块坐标
+int AreaCalculationM(vector<doubleCoordinate>C, vector<doubleCoordinate>D);
+//面积计算-光栅扫描
+int AreaCalculation(Mat& img);
+//十进制转二进制
+void OctToBin(int num, vector<int> &vec);
+//BPD位平面分解
+void BPD(Mat& img, vector<Mat> &A);

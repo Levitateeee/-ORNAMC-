@@ -9,7 +9,6 @@ void BuildMatrixR(Mat& RH, Mat& RV, Mat& RA, Mat& img, vector<doubleCoordinate>&
 
 	Mat AllocatedH = Mat::zeros(M, N, CV_8UC1);
 	Mat AllocatedV = Mat::zeros(M, N, CV_8UC1);
-
 	
 	doubleCoordinate temp;
 	int x1 = 0, y1 = 0;
@@ -17,24 +16,20 @@ void BuildMatrixR(Mat& RH, Mat& RV, Mat& RA, Mat& img, vector<doubleCoordinate>&
 	bool a = true;
 	int mode = 1;
 
-	if (AllocatedH.at<uchar>(y1, x1) == 1)   cout << 1 << endl;
-	else   cout << 0 << endl;
 
-	for (; y1 < M; y1++) {
-		for (; x1 < N; x1++) {
-			cout << "这里是内层循环" << endl;
-			cout << y1 << x1 << endl;
-			if (AllocatedH.at<uchar>(y1, x1) != 0 || AllocatedV.at<uchar>(y1, x1) != 0)   continue;
-
+	for (y1 = 0; y1 < M; y1++) {
+		for (x1 = 0; x1 < N; x1++) {
+			if (img.at<uchar>(y1, x1) == 255)   continue;
+			if ((AllocatedH.at<uchar>(y1, x1) != 0) || (AllocatedV.at<uchar>(y1, x1) != 0))   continue;
 			mode = 1;
 			x2 = x1;
 			y2 = y1;
 			//临时向量，存储横向拓展中发生重叠的所有不同块的坐标
 			vector<doubleCoordinate> E;
 
+
 			//寻找最大子模式
 			while ((a = JudgeSameBlock(img, x1, y1, x2, y2)) && x2 != N - 1) {
-
 				x2++;
 				
 				//遇到已重叠的水平块
@@ -82,6 +77,7 @@ void BuildMatrixR(Mat& RH, Mat& RV, Mat& RA, Mat& img, vector<doubleCoordinate>&
 						RV.at<uchar>(C[c].y2, C[c].x2) = 2;
 					}
 				}
+				//遇到已转移的垂直块
 				else if (AllocatedV.at<uchar>(y2, x2) == 1 && JudgeSameBlock(img, x1, y1, x2, y2)) {
 					mode = 2;
 					int c = C.size() - 1;
@@ -113,7 +109,7 @@ void BuildMatrixR(Mat& RH, Mat& RV, Mat& RA, Mat& img, vector<doubleCoordinate>&
 			while ((a = JudgeSameBlock(img, x1, y1, x2, y2)) && y2 != M - 1)   y2++;
 			y2--;
 			//处理边界
-			if (a && (y2 + 1) == M - 1 && AllocatedH.at<uchar>(y2 + 1, x2) == 0)   y2++;
+			if (a && (y2 + 1) == M - 1)   y2++;
 			//对该找到的水平块区域进行标识
 			if (mode == 2) {
 				for (int a = y1; a <= y2; a++) {
@@ -138,6 +134,7 @@ void BuildMatrixR(Mat& RH, Mat& RV, Mat& RA, Mat& img, vector<doubleCoordinate>&
 			temp.y2 = y2;
 			C.push_back(temp);
 
+			//求重叠块的坐标
 			for (int i = 0; i < E.size(); i++) {
 				doubleCoordinate vec;
 				vec.x1 = E[i].x1;
